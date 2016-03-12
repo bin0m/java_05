@@ -20,6 +20,8 @@ public class XMLFile<T> {
      */
     @SuppressWarnings("unchecked")
     public T load(String filename) throws Exception {
+        // XMLDecoder - из текстового файла считывает XML
+        // и заполняет поля объектов
         XMLDecoder decoder =
                 new XMLDecoder(new BufferedInputStream(
                         new FileInputStream(filename)));
@@ -36,6 +38,7 @@ public class XMLFile<T> {
      * @throws Exception
      */
     public void save(T obj, String filename) throws Exception {
+        // Запись (сериализация) любого объекта в формат XML
         XMLEncoder encoder =
                 new XMLEncoder(
                         new BufferedOutputStream(

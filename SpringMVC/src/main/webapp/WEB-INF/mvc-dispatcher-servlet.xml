@@ -9,8 +9,12 @@
 
     <bean id="myView"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- К строке, которую возвращает метод контроллера -->
+        <!-- Добавить спереди -->
         <property name="prefix" value="/WEB-INF/pages/"/>
+        <!-- Добавить сзади -->
         <property name="suffix" value=".jsp"/>
+        <!-- "hello" -> "/WEB-INF/pages/hello.jsp" -->
     </bean>
 
     <bean id="messageSource"

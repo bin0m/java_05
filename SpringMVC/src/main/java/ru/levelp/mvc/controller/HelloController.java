@@ -21,12 +21,13 @@ public class HelloController {
         // Добавляем аттрибут ${message} для hello.jsp
         model.addAttribute("message", "Добро пожаловать на наш сайт!");
         model.addAttribute("a", 2);
-        model.addAttribute("b", 12);
+        model.addAttribute("b", 3);
         return "hello";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(ModelMap model, @RequestParam("a") int a,
+    public String add(ModelMap model,
+                      @RequestParam("a") int a,
                       @RequestParam("b") int b) {
         model.addAttribute("a", a);
         model.addAttribute("b", b);
@@ -55,7 +56,8 @@ public class HelloController {
      * size - размер таблицы
      */
     @RequestMapping(value = "/table/{size}", method = RequestMethod.GET)
-    public String printMulTable2(Model model, @PathVariable("size") Integer size) {
+    public String printMulTable2(Model model,
+                                 @PathVariable("size") Integer size) {
         model.addAttribute("html", "size = " + size);
         model.addAttribute("size", size);
         return "table";
@@ -101,7 +103,7 @@ public class HelloController {
         list.add("4. Оранжевая");
         list.add("5. Фиолетовая");
 
-        //return back to index.jsp
+        // "list" - имя .jsp страницы => list.jsp
         ModelAndView model = new ModelAndView("list");
         model.addObject("lists", list);
 

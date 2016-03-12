@@ -12,6 +12,7 @@
 <a href="${pageContext.request.contextPath}/logout">Выйти из системы</a>
 
 
+<br>
 TODO: поиск по вакансиям
 
 <form action="${pageContext.request.contextPath}/search">

@@ -23,9 +23,9 @@ public class PostgresJDBC {
         Driver driver = new org.postgresql.Driver();
         Class.forName("org.postgresql.Driver");
 
-        DriverManager.getDriver("jdbc:postgresql://localhost:5433/test");
+        DriverManager.getDriver("jdbc:postgresql://localhost:5432");
         Connection con = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5433/test",
+                "jdbc:postgresql://localhost:5432/test",
                 "postgres", "123");
 
         // Создаём запрос

@@ -16,6 +16,7 @@ public class MyClassHelper {
      * @throws Exception
      */
     public static void write(Object obj, String filename) throws Exception {
+        System.out.println("Save to: \"" + filename + "\"");
         XMLEncoder encoder =
                 new XMLEncoder(
                         new BufferedOutputStream(

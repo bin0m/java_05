@@ -6,8 +6,10 @@
 Русский
 <h1>${message}</h1>
 
-a + b = ${a + b}
+Пример вычислений:
+${a} + ${b} = ${a + b}
 
+<br>
 <a href="${pageContext.request.contextPath}/login">Вход в систему</a>
 
 </body>

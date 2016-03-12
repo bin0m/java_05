@@ -8,12 +8,13 @@ import java.io.File;
  */
 public class MyClassXMLTest extends Assert {
 
-    public static final String FILENAME = "foo.xml";
+    public static final String FILENAME = "person.xml";
 
     @Test
     public void testSaveLoad() throws Exception {
         Person f1 = new Person();
         f1.setName("Петя");
+        f1.setAge(10);
         MyClassHelper.write(f1, FILENAME);
 
         File f = new File(FILENAME);
@@ -23,6 +24,7 @@ public class MyClassXMLTest extends Assert {
 
         // Считываем обратно
         Person f2 = MyClassHelper.read(FILENAME);
-        System.out.println("Foo" + f2.getName());
+        assertEquals(f1.getName(), f2.getName());
+        assertEquals(f1.getAge(), f2.getAge());
     }
 }

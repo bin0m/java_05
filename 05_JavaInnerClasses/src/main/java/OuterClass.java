@@ -10,19 +10,20 @@ import java.awt.event.ActionListener;
 public class OuterClass<T> {
     static int staticOuterField;
     StaticInnerClass staticInnerClass = new StaticInnerClass();
+    StaticInnerClass<Integer> integerStaticInnerClass = new StaticInnerClass<>();
     private int outerField;
 
-    static void staticMethod(){
-        System.out.println("OuterClass.staticMethod");
+    public OuterClass() {
     }
 
-    public OuterClass() {
+    static void staticMethod() {
+        System.out.println("OuterClass.staticMethod");
     }
 
     /**
      * 1. Локальные классы - внутри методов основного класса.
      * Могут быть использованы только внутри этих методов.
-     * Имеют доступ к членам внешнего класса.
+     * Имеют доступ к полям и методам внешнего класса.
      * Имеют доступ как к локальным переменным,
      * так и к параметрам метода при одном условии -
      * переменные и параметры используемые локальным классом должны
@@ -34,6 +35,8 @@ public class OuterClass<T> {
         InnerClass innerInsideMehod; // Эта строка кода синтаксически корректна
         int notFinal = 0;
         final int value = 10;
+
+        final int forInner = notFinal;
 
         class LocalInnerClass {
             int localField = 2;
@@ -48,6 +51,8 @@ public class OuterClass<T> {
                 // Не можем менять локальных переменных
                 // value++;
                 staticOuterField++;
+
+                System.out.println("forInner = " + forInner);
             }
 
             // notFinal++; // Ошибка компиляции
@@ -88,6 +93,16 @@ public class OuterClass<T> {
                 System.out.println("Эта строка выводится на экран каждые " + interval + " секунд");
             }
         };
+        Runnable runnable = new Runnable() {
+            int i = 10;
+
+            @Override
+            public void run() {
+                System.out.println("run");
+            }
+        };
+        runnable.run();
+
 
         Timer t = new Timer(interval, listener); // Объект анонимного класса использован внутри метода
         t.start();
@@ -95,8 +110,12 @@ public class OuterClass<T> {
 
     /**
      * 3. Статический внутренний класс (с ключевым словом static):
-     * Не имеет доступа к членам внешнего класса за исключением статических.
-     * Может содержать статические поля, методы и классы, в отличие от других типов внутренних классов.
+     * Можем обращаться:
+     * - к статическим полям внешнего класса
+     * - к статическим методам внешнего класса
+     * Не имеет доступа к нестатическим членам внешнего класса.
+     * Может содержать статические поля, методы и классы,
+     * в отличие от других типов внутренних классов.
      */
     public static class StaticInnerClass<T> {
         static int count = 0; // Статическое поле внутри

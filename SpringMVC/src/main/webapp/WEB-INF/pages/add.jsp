@@ -5,7 +5,10 @@
 </head>
 <body>
 
-${a+b} ${sum}
+${a} + ${b} = ${a + b}
+
+<br>
+${a} + ${b} = ${sum}
 
 </body>
 </html>

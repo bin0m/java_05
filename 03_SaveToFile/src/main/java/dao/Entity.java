@@ -9,5 +9,5 @@ public interface Entity {
     /**
      * @return идентификатор данного объекта
      */
-    public int getId();
+    int getId();
 }
