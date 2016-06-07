@@ -22,6 +22,7 @@
         <module>SpringMVC</module>
         <module>05_JavaInnerClasses</module>
         <module>09_Java8</module>
+        <module>JDBC_Demo</module>
     </modules>
 
     <build>
