@@ -21,13 +21,11 @@ public class OuterClass<T> {
     }
 
     /**
-     * 1. Локальные классы - внутри методов основного класса.
-     * Могут быть использованы только внутри этих методов.
-     * Имеют доступ к полям и методам внешнего класса.
-     * Имеют доступ как к локальным переменным,
-     * так и к параметрам метода при одном условии -
-     * переменные и параметры используемые локальным классом должны
-     * быть объявлены final.
+     * 1. Локальные классы - объявляются внутри методов основного класса.
+     * Могут быть использованы только внутри этого же метода.
+     * Имеют доступ к:
+     * - всем полям и методам внешнего класса.
+     * - к локальным переменным и параметрам метода если они объявлены final.
      * Не могут содержать определение (но могут наследовать)
      * статических полей, методов и классов (кроме констант).
      */
@@ -39,11 +37,16 @@ public class OuterClass<T> {
         final int forInner = notFinal;
 
         class LocalInnerClass {
+            // Константа в локальном классе
+            public final static int CONST = 1000;
+
+            // static int staticVar = 100; // Ошибка компиляции
+
             int localField = 2;
 
             int getOuterField() {
                 outerField++;
-                return OuterClass.this.outerField; // Эта линия кода синтаксически корректна
+                return OuterClass.this.outerField;
             }
 
             public void m() {
@@ -62,6 +65,8 @@ public class OuterClass<T> {
             }
         }
 
+        // Можно создавать сколько угодно экземпляров локального класса
+        // но только внутри данного метода
         LocalInnerClass localInnerClass = new LocalInnerClass();
         localInnerClass.m();
 
@@ -70,7 +75,8 @@ public class OuterClass<T> {
     }
 
     /**
-     * 2. Анонимные (безымянные) классы - объявляются внутри методов основного класса.
+     * 2. Анонимные (безымянные) классы -
+     * объявляются внутри методов основного (внешнего) класса.
      * Могут быть использованы только внутри этих методов.
      * В отличие от локальных классов, анонимные классы не имеют названия.
      * Главное требование к анонимному классу -
@@ -84,6 +90,7 @@ public class OuterClass<T> {
         // интерфейс ActionListener
         final int localVar = 2;
         ActionListener listener = new ActionListener() {
+            // Начало анонимного локального класса >>>
             int myField = 10;
 
             @Override
@@ -92,6 +99,7 @@ public class OuterClass<T> {
                 System.out.println("localVar = " + localVar);
                 System.out.println("Эта строка выводится на экран каждые " + interval + " секунд");
             }
+            // << Окончание
         };
         Runnable runnable = new Runnable() {
             int i = 10;
@@ -126,6 +134,7 @@ public class OuterClass<T> {
             id = ++count;
         }
 
+        // Не можем обращаться к обычным полям класса
         //int getOuterField() {
         //    return OuterClass.this.outerField; // Эта строка кода - ошибка компиляции
         // }

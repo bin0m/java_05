@@ -1,7 +1,13 @@
 package defaultimp;
 
+/**
+ * Java8 - реализация по-умолчанию (default для интерфейсов)
+ */
 public interface Shape {
 
+    /**
+     * @return Имя фигуры
+     */
     String getName();
 
     /**
@@ -10,6 +16,7 @@ public interface Shape {
      * @return строчку об объекте для вывода пользователю
      */
     default String presentation() {
-        return "Presentation: " + getName();
+        return "Реализуйте метод presentation() для класса "
+                + getClass().getName() + ": " + getName();
     }
 }

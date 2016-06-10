@@ -1,3 +1,4 @@
+import dao.XMLFile;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,6 +16,7 @@ public class MyClassXMLTest extends Assert {
         Person f1 = new Person();
         f1.setName("Петя");
         f1.setAge(10);
+        //f1.setFinalField(343);
         MyClassHelper.write(f1, FILENAME);
 
         File f = new File(FILENAME);
@@ -26,5 +28,17 @@ public class MyClassXMLTest extends Assert {
         Person f2 = MyClassHelper.read(FILENAME);
         assertEquals(f1.getName(), f2.getName());
         assertEquals(f1.getAge(), f2.getAge());
+    }
+
+    @Test
+    public void testSaveLoadArrays() throws Exception {
+        int array[] = {4, 5, 2, 324};
+        String filename = "array.xml";
+        MyClassHelper.write(array, filename);
+
+        XMLFile<int[]> xmlFile = new XMLFile<>();
+        int array2[] = xmlFile.load(filename);
+
+        assertArrayEquals(array, array2);
     }
 }

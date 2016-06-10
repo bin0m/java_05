@@ -2,6 +2,7 @@ import dao.XMLFile;
 
 import java.beans.XMLEncoder;
 import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
@@ -15,12 +16,14 @@ public class MyClassHelper {
      * @param filename имя файла
      * @throws Exception
      */
-    public static void write(Object obj, String filename) throws Exception {
+    public static void write(Object obj, String filename) throws FileNotFoundException {
         System.out.println("Save to: \"" + filename + "\"");
-        XMLEncoder encoder =
+        /*XMLEncoder encoder =
                 new XMLEncoder(
                         new BufferedOutputStream(
-                                new FileOutputStream(filename)));
+                                new FileOutputStream(filename))); */
+        XMLEncoder encoder =
+                new XMLEncoder(new FileOutputStream(filename));
         encoder.writeObject(obj);
         encoder.close();
     }

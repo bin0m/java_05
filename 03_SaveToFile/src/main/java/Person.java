@@ -1,9 +1,16 @@
+import java.io.Serializable;
+
 /**
  *
  */
 public class Person {
     private String name;
     private int age;
+    private final int finalField;
+
+    public Person() {
+        finalField = 15;
+    }
 
     /**
      * Getter
@@ -29,5 +36,9 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getFinalField() {
+        return finalField;
     }
 }

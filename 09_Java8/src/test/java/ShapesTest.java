@@ -16,7 +16,7 @@ public class ShapesTest {
     public void testName() {
         Square square = new Square();
         assertEquals("Квадрат", square.getName());
-        assertEquals("Presentation: Квадрат", square.presentation());
+        System.out.println("square.presentation() = " + square.presentation());
         Circle circle = new Circle(1.0, 0.5, 3);
         assertEquals("Круг", circle.getName());
         assertEquals("Круг  центр: (1.0; 0.5)  радиус = 3.0", circle.presentation());

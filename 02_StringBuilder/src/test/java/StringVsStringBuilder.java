@@ -4,13 +4,15 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Сравненеи производительности String vs StringBuilder
+ * Сравнение производительности String vs StringBuilder
+ * StringBuilder - если пользуемся из одного потока
+ * StringBuffer - если из нескольких потоков
  */
 public class StringVsStringBuilder {
     /**
      * Количество операций
      */
-    static final int INTS = 30000;
+    static final int INTS = 50000;
 
     // Результат для строки
     static String resString;

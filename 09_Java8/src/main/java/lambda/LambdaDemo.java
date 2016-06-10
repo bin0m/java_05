@@ -4,11 +4,28 @@ import static java.lang.System.out;
 
 /**
  * Лямбда-выражения
+ * ----------------
  */
 public class LambdaDemo {
 
     public static void main(String[] args) {
         int[] ints = {1, 2, 4};
+        /*
+        new Operation() {
+            @Override
+            public int apply(int x, int y) {
+                return x + y;
+            }
+        };
+         */
+        Operation multiply = new Operation() {
+            @Override
+            public int apply(int a, int b) {
+                return a * b;
+            }
+        };
+        out.println("Sum: " + map(ints, multiply));
+
         Operation op = (x, y) -> x + y;
         out.println("Sum: " + map(ints, op));
         out.println("Mul: " + map(ints, (x, y) -> x * y));

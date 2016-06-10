@@ -23,8 +23,9 @@ public class XMLFile<T> {
         // XMLDecoder - из текстового файла считывает XML
         // и заполняет поля объектов
         XMLDecoder decoder =
-                new XMLDecoder(new BufferedInputStream(
-                        new FileInputStream(filename)));
+                new XMLDecoder(
+                        new BufferedInputStream(
+                                new FileInputStream(filename)));
         T object = (T) decoder.readObject();
         decoder.close();
         return object;
